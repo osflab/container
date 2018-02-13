@@ -59,10 +59,5 @@
         "psr-4": {
             "Osf\\Container\\": ""
         }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "3.0.x-dev"
-        }
     }
 }
