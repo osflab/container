@@ -54,7 +54,7 @@
         "zendframework/zend-i18n-resources": "^2.5.2",
         "ext-redis": "*"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
             "Osf\\Container\\": ""
