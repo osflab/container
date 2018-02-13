@@ -9,6 +9,7 @@
 namespace Osf\Container\ZendContainer;
 
 use Osf\Container\ZendContainer;
+use Osf\Test\Runner as OsfTest;
 
 /**
  * Zend container unit tests
@@ -20,7 +21,7 @@ use Osf\Container\ZendContainer;
  * @package osf
  * @subpackage test
  */
-class Test extends \Osf\Test\Runner
+class Test extends OsfTest
 {
     public static function run()
     {
