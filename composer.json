@@ -16,8 +16,7 @@
     },
     "require": {
         "php": "^7.1.0",
-        "osflab/exception": "~3.0.0",
-        "osflab/stream": "~3.0.0"
+        "osflab/exception": "~3.0.0"
     },
     "require-dev": {
         "osflab/test": "~3.0.0"
@@ -38,6 +37,7 @@
         "osflab/view": "3.0.0"
     },
     "suggest": {
+        "osflab/stream": "~3.0.0",
         "osflab/application": "~3.0.0",
         "osflab/controller": "~3.0.0",
         "osflab/view": "~3.0.0",

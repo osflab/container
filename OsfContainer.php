@@ -12,7 +12,6 @@ use Osf\Container\AbstractContainer;
 use Osf\Exception\ArchException;
 use Osf\Application\Bootstrap;
 use Osf\Controller\Router;
-use Osf\Stream\Text as T;
 use Osf\Session\AppSession as Session;
 use Osf\Cache\OsfCache as Cache;
 
@@ -32,7 +31,7 @@ use Osf\Cache\OsfCache as Cache;
  */
 class OsfContainer extends AbstractContainer
 {   
-    protected static $instances = array();
+    protected static $instances = [];
     protected static $mockNamespace = 'real';
     
     /**
@@ -65,7 +64,7 @@ class OsfContainer extends AbstractContainer
      */
     public static function getController($appName): \Osf\Controller\Action
     {
-        $appName = T::ucFirst($appName);
+        $appName = self::ucFirst($appName);
         $class = "\\App\\" . $appName . '\Controller';
         if (defined('APPLICATION_PATH') && !is_dir(APPLICATION_PATH . '/App/' . $appName)) {
             throw new ArchException('Controller [' . $appName . '] not found', 404);
@@ -78,7 +77,7 @@ class OsfContainer extends AbstractContainer
      */
     public static function getView(): \Osf\View\OsfView
     {
-        return self::buildObject('\Osf\View\OsfView', array(), 'view');
+        return self::buildObject('\Osf\View\OsfView', [], 'view');
     }
     
     /**
@@ -126,14 +125,14 @@ class OsfContainer extends AbstractContainer
      */
     public static function getRouter(): \Osf\Controller\Router
     {
-        $controller = T::ucFirst(OsfContainer::getRequest()->getController());
+        $controller = self::ucFirst(OsfContainer::getRequest()->getController());
         if (!file_exists(APPLICATION_PATH . '/App/' . $controller . '/Config/Router.php')) {
             $controller = Router::getDefaultControllerName(true);
         }
         $routerClass = "App\\" . $controller . '\Router';
         $routerParams = self::getConfig()->getConfig('router');
         if (!is_array($routerParams)) {
-            $routerParams = array();
+            $routerParams = [];
         }
         
         return self::buildObject($routerClass, [$routerParams]);
@@ -145,7 +144,7 @@ class OsfContainer extends AbstractContainer
      */
     public static function getBootstrap(): \Osf\Application\Bootstrap
     {
-        $controller = T::ucFirst(self::getRequest()->getController());
+        $controller = self::ucFirst(self::getRequest()->getController());
         $appBootstrap = APPLICATION_PATH . '/App/' . $controller . '/Bootstrap.php';
         $controller = $controller === null || !file_exists($appBootstrap) 
                     ? Router::getDefaultControllerName(true) : $controller;
@@ -173,7 +172,7 @@ class OsfContainer extends AbstractContainer
      */
     public static function getCrypt($cryptKey = Crypt::DEFAULT_KEY, $mode = Crypt::MODE_ASCII): \Osf\Crypt\Crypt
     {
-        return self::buildObject('\Osf\Crypt\Crypt', array($cryptKey, $mode));
+        return self::buildObject('\Osf\Crypt\Crypt', [$cryptKey, $mode]);
     }
     
     /**

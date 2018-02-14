@@ -26,9 +26,12 @@ class Test extends OsfTest
     public static function run()
     {
         self::reset();
-        self::assert(extension_loaded('intl'), 'intl extension for Zend Translator is not loaded');
-        $translator = ZendContainer::getTranslate(false);
-        self::assert($translator instanceof \Zend\I18n\Translator\Translator, 'Translator not found');
+        
+        if (class_exists('Zend\I18n\Translator\Translator')) {
+            self::assert(extension_loaded('intl'), 'intl extension for Zend Translator is not loaded');
+            $translator = ZendContainer::getTranslate(false);
+            self::assert($translator instanceof \Zend\I18n\Translator\Translator, 'Translator not found');
+        }
         
         return self::getResult();
     }
