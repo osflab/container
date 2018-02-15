@@ -94,11 +94,11 @@ abstract class AbstractContainer
      * @param string $txt
      * @return string
      */
-    protected static function ucFirst(string $txt): string
+    protected static function ucFirst($txt): string
     {
         if (class_exists('\Osf\Stream\Text')) {
             return \Osf\Stream\Text::ucFirst($txt);
         }
-        return ucfirst($txt);
+        return ucfirst((string) $txt);
     }
 }
