@@ -53,7 +53,9 @@ class VendorContainer extends AbstractContainer
             if (!$redis->pconnect($config['host'], $config['port'])) {
                 throw new ArchException('Unable to connect redis: ' . $redis->getLastError());
             }
-            if (!array_key_exists('auth', $config) && file_exists($_SERVER['HOME'] . '/.redispass')) {
+            if (!array_key_exists('auth', $config) 
+                    && isset($_SERVER['HOME']) 
+                    && file_exists($_SERVER['HOME'] . '/.redispass')) {
                 $config['auth'] = trim(file_get_contents($_SERVER['HOME'] . '/.redispass'));
             }
             if (array_key_exists('auth', $config)) {
