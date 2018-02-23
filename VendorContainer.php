@@ -58,7 +58,7 @@ class VendorContainer extends AbstractContainer
                     && file_exists($_SERVER['HOME'] . '/.redispass')) {
                 $config['auth'] = trim(file_get_contents($_SERVER['HOME'] . '/.redispass'));
             }
-            if (array_key_exists('auth', $config)) {
+            if (array_key_exists('auth', $config) && $config['auth'] !== '') {
                 if (!$redis->auth($config['auth'])) {
                     throw new ArchException('Unable to auth redis, bad auth string?');
                 }
