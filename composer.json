@@ -1,6 +1,7 @@
 {
     "name": "osflab/container",
     "description": "OSF dynamic object container mechanism",
+    "version": "3.0.0",
     "type": "library",
     "homepage": "https://github.com/osflab/container",
     "license": "AGPL-3.0-or-later",
