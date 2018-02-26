@@ -55,7 +55,7 @@
         "ext-redis": "*"
     },
     "minimum-stability": "dev",
-    "prefer-stable": "true",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Osf\\Container\\": ""
