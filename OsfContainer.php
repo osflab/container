@@ -225,9 +225,9 @@ class OsfContainer extends AbstractContainer
     /**
      * Get a session objet
      * @param string $namespace
-     * @return \Osf\Session\AppSession
+     * @return \Osf\Session\SessionInterface
      */
-    public static function getSession(string $namespace = Session::DEFAULT_NAMESPACE): \Osf\Session\AppSession
+    public static function getSession(string $namespace = Session::DEFAULT_NAMESPACE): \Osf\Session\SessionInterface
     {
         return self::buildObject('\Osf\Session\AppSession', [$namespace], $namespace);
     }
