@@ -23,7 +23,7 @@ use Osf\Container\AbstractContainer;
 class TestContainer extends AbstractContainer
 {
     protected static $instances = [];
-    protected static $mockNamespace = 'real';
+    protected static $mockNamespace = self::MOCK_DISABLED;
     
     /**
      * @task [BOOTSTRAP] FR: Optimiser la recherche du bootstrap

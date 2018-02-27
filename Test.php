@@ -48,6 +48,19 @@ class Test extends OsfTest
         self::assert(isset($instances['\Osf\Container\Test\TestFeature']['default']), 'An instance not found in container');
         self::assert(isset($instances['\stdClass']['default']), 'An instance not found in container');
         self::assert(isset($instances['\stdClass']['new']), 'An instance not found in container');
+        Container::getFeature()->setName('real');
+        self::assertEqual(Container::getFeature()->getName(), 'real');
+        $mockObj = new TestFeature('mock');
+        Container::cleanMocks();
+        Container::registerMock($mockObj, '\Osf\Container\Test\TestFeature');
+        self::assert(Container::getFeature() instanceof TestFeature);
+        Container::setMockNamespace(Container::MOCK_ENABLED);
+        self::assertEqual(Container::getFeature(), $mockObj);
+        self::assertEqual(Container::getFeature()->getName(), 'mock');
+        Container::cleanMocks();
+        self::assertEqual(Container::getFeature()->getName(), null);
+        Container::setMockNamespace(Container::MOCK_DISABLED);
+        self::assertEqual(Container::getFeature()->getName(), 'real');
         if (class_exists('Twig_TemplateWrapper')) {
             $string = 'Bonjour {{ contact.nom }}, ça va ?';
             $data = ['contact' => ['nom' => "Guillaume"]];

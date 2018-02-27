@@ -32,7 +32,7 @@ use Osf\Cache\OsfCache as Cache;
 class OsfContainer extends AbstractContainer
 {   
     protected static $instances = [];
-    protected static $mockNamespace = 'real';
+    protected static $mockNamespace = self::MOCK_DISABLED;
     
     /**
      * @return \Osf\Application\OsfApplication

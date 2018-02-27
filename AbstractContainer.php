@@ -24,6 +24,9 @@ use Osf\Container\OsfContainer as Container;
 abstract class AbstractContainer
 {
     
+    const MOCK_DISABLED = 'real';
+    const MOCK_ENABLED  = 'mock';
+    
     /**
      * Set the mock context in order to generate mock objects
      * Namespace "real" = no mock (production)
@@ -33,6 +36,30 @@ abstract class AbstractContainer
     public static function setMockNamespace(string $namespace): void
     {
         static::$mockNamespace = $namespace;
+    }
+    
+    /**
+     * Register a mock object
+     * @param stdClass $object
+     * @param string $className
+     * @param array $args
+     * @param string $namespace
+     * @return void
+     */
+    public static function registerMock($object, string $className, array $args = [], string $namespace = 'default', string $mockNamespace = self::MOCK_ENABLED): void
+    {
+        static::$instances[$mockNamespace][$className][$namespace] = $object;
+    }
+    
+    /**
+     * Clean mock context
+     * @return void
+     */
+    public static function cleanMocks(string $mockNamespace = self::MOCK_ENABLED): void
+    {
+        if (isset(static::$instances[$mockNamespace])) {
+            unset(static::$instances[$mockNamespace]);
+        }
     }
     
     /**

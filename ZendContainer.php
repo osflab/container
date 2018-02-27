@@ -24,7 +24,7 @@ use Osf\Container\OsfContainer as Container;
 class ZendContainer extends AbstractContainer
 {
     protected static $instances = [];
-    protected static $mockNamespace = 'real';
+    protected static $mockNamespace = self::MOCK_DISABLED;
     
     /**
      * @return \Zend\I18n\Translator\Translator

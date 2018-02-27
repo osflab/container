@@ -38,7 +38,7 @@ class VendorContainer extends AbstractContainer
     const TWIG_CACHE_DIR = '/var/cache/twig';
     
     protected static $instances = [];
-    protected static $mockNamespace = 'real';
+    protected static $mockNamespace = self::MOCK_DISABLED;
     
     /**
      * @return \Redis
